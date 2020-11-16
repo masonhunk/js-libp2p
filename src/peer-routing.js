@@ -3,6 +3,11 @@
 const errCode = require('err-code')
 const pAny = require('p-any')
 
+/**
+ * @typedef {import('peer-id')} PeerId
+ * @typedef {import('multiaddr')} multiaddr
+ */
+
 module.exports = (node) => {
   const routers = node._modules.peerRouting || []
 
@@ -18,7 +23,7 @@ module.exports = (node) => {
      * @param {string} id - The id of the peer to find
      * @param {object} [options]
      * @param {number} [options.timeout] - How long the query should run
-     * @returns {Promise<{ id: PeerId, multiaddrs: Multiaddr[] }>}
+     * @returns {Promise<{ id: PeerId, multiaddrs: Array<multiaddr> }>}
      */
     findPeer: async (id, options) => { // eslint-disable-line require-await
       if (!routers.length) {
